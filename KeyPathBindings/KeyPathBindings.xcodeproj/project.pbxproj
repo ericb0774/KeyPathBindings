@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072C76C52069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072C76C42069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift */; };
 		07D35D972069490400494DAF /* KeyPathBindings.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D35D952069490400494DAF /* KeyPathBindings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07D35DC7206949F400494DAF /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D35DC6206949F400494DAF /* UnitTests.swift */; };
 		07D35DC9206949F400494DAF /* KeyPathBindings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D35D922069490400494DAF /* KeyPathBindings.framework */; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		072C76C42069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingNotificationCenterTests.swift; sourceTree = "<group>"; };
 		07D35D922069490400494DAF /* KeyPathBindings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyPathBindings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D35D952069490400494DAF /* KeyPathBindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyPathBindings.h; sourceTree = "<group>"; };
 		07D35D962069490400494DAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			children = (
 				07D35DC6206949F400494DAF /* UnitTests.swift */,
 				07D35DC8206949F400494DAF /* Info.plist */,
+				072C76C42069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072C76C52069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift in Sources */,
 				07D35DC7206949F400494DAF /* UnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
