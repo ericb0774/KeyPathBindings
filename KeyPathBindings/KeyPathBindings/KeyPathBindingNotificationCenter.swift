@@ -55,8 +55,8 @@ final public class KeyPathBindingNotificationCenter: NotificationCenter {
     ///   - keyPath: The keyPath to the object property to observe.
     ///   - handler: The handler for keyPath value changes.
     /// - Returns: An observer which must be disposed when no longer needed.
-    public func addObserver(forObject object: AnyObject, keyPath: AnyKeyPath, handler: @escaping (_: KeyPathValueChangeEvent) -> Void) -> Any {
-        return addObserver(forObject:object, keyPaths:[keyPath], handler:handler)
+    public func addObserver(forObject object: AnyObject, keyPath: AnyKeyPath, queue: OperationQueue? = nil, handler: @escaping (_: KeyPathValueChangeEvent) -> Void) -> Any {
+        return addObserver(forObject:object, keyPaths:[keyPath], queue: queue, handler:handler)
     }
 
     /// Adds an observer of multiple keyPath changes for an object.
@@ -67,8 +67,8 @@ final public class KeyPathBindingNotificationCenter: NotificationCenter {
     ///   - keyPaths: The keyPaths to the object properties to observe.
     ///   - handler: The handler for keyPath value changes.
     /// - Returns: An observer which must be disposed when no longer needed.
-    public func addObserver(forObject object: AnyObject, keyPaths: Set<AnyKeyPath>, handler: @escaping (_: KeyPathValueChangeEvent) -> Void) -> Any {
-        return super.addObserver(forName: .keyPathValueChanged, object: object, queue: nil) { notification in
+    public func addObserver(forObject object: AnyObject, keyPaths: Set<AnyKeyPath>, queue: OperationQueue? = nil, handler: @escaping (_: KeyPathValueChangeEvent) -> Void) -> Any {
+        return super.addObserver(forName: .keyPathValueChanged, object: object, queue: queue) { notification in
             guard
                 let userInfo = notification.userInfo,
                 let changeEvent = userInfo[UserInfoKey.keyPathValueChangeEvent] as? KeyPathValueChangeEvent,

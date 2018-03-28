@@ -85,6 +85,18 @@ final class KeyPathBindingNotificationCenterTests: XCTestCase {
         XCTAssertEqual(notificationCount, 2)
         sut.removeObserver(observer)
     }
+
+    func test_ShouldNotSendNotificationsOfChangesFromOtherObjects() {
+        let object1 = Object()
+        let object2 = Object()
+
+        let observer = sut.addObserver(forObject: object1, keyPath: \Object.value1) { (change) in
+            XCTFail("This notification should not have been received.")
+        }
+
+        object2.value1 += 1
+        sut.removeObserver(observer)
+    }
 }
 
 class Object {
