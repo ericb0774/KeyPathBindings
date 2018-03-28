@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		072C76C52069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072C76C42069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift */; };
+		0736CB3E2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0736CB3D2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift */; };
 		07D35D972069490400494DAF /* KeyPathBindings.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D35D952069490400494DAF /* KeyPathBindings.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		07D35DC7206949F400494DAF /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D35DC6206949F400494DAF /* UnitTests.swift */; };
 		07D35DC9206949F400494DAF /* KeyPathBindings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D35D922069490400494DAF /* KeyPathBindings.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,11 +25,11 @@
 
 /* Begin PBXFileReference section */
 		072C76C42069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingNotificationCenterTests.swift; sourceTree = "<group>"; };
+		0736CB3D2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingNotificationCenter.swift; sourceTree = "<group>"; };
 		07D35D922069490400494DAF /* KeyPathBindings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyPathBindings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D35D952069490400494DAF /* KeyPathBindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyPathBindings.h; sourceTree = "<group>"; };
 		07D35D962069490400494DAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07D35DC4206949F400494DAF /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		07D35DC6206949F400494DAF /* UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
 		07D35DC8206949F400494DAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +75,7 @@
 			children = (
 				07D35D962069490400494DAF /* Info.plist */,
 				07D35D952069490400494DAF /* KeyPathBindings.h */,
+				0736CB3D2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift */,
 			);
 			path = KeyPathBindings;
 			sourceTree = "<group>";
@@ -82,7 +83,6 @@
 		07D35DC5206949F400494DAF /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				07D35DC6206949F400494DAF /* UnitTests.swift */,
 				07D35DC8206949F400494DAF /* Info.plist */,
 				072C76C42069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift */,
 			);
@@ -151,6 +151,7 @@
 				TargetAttributes = {
 					07D35D912069490400494DAF = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					07D35DC3206949F400494DAF = {
@@ -199,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0736CB3E2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +209,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				072C76C52069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift in Sources */,
-				07D35DC7206949F400494DAF /* UnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +339,7 @@
 		07D35D9B2069490400494DAF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -351,6 +353,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.duneparksoftware.KeyPathBindings;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -359,6 +362,7 @@
 		07D35D9C2069490400494DAF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -380,6 +384,7 @@
 		07D35DCD206949F400494DAF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7CRPKLHC7G;
 				INFOPLIST_FILE = UnitTests/Info.plist;
@@ -395,6 +400,7 @@
 		07D35DCE206949F400494DAF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7CRPKLHC7G;
 				INFOPLIST_FILE = UnitTests/Info.plist;
