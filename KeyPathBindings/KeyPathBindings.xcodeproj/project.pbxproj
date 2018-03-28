@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0718770E206BC95E00BF7687 /* KeyPathBindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718770D206BC95E00BF7687 /* KeyPathBindingTests.swift */; };
+		07187710206BCA9E00BF7687 /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718770F206BCA9E00BF7687 /* TestObject.swift */; };
 		072C76C52069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072C76C42069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift */; };
 		0736CB3E2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0736CB3D2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift */; };
+		07384C70206BCE880035F567 /* KeyPathBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07384C6F206BCE880035F567 /* KeyPathBinding.swift */; };
+		07384C72206C10710035F567 /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07384C71206C10710035F567 /* DispatchQueue+Extensions.swift */; };
+		07384C74206C432B0035F567 /* KeyPathBindingNotificationCenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07384C73206C432B0035F567 /* KeyPathBindingNotificationCenterMock.swift */; };
 		07D35D972069490400494DAF /* KeyPathBindings.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D35D952069490400494DAF /* KeyPathBindings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07D35DC9206949F400494DAF /* KeyPathBindings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D35D922069490400494DAF /* KeyPathBindings.framework */; };
 /* End PBXBuildFile section */
@@ -24,8 +29,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0718770D206BC95E00BF7687 /* KeyPathBindingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingTests.swift; sourceTree = "<group>"; };
+		0718770F206BCA9E00BF7687 /* TestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
 		072C76C42069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingNotificationCenterTests.swift; sourceTree = "<group>"; };
 		0736CB3D2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingNotificationCenter.swift; sourceTree = "<group>"; };
+		07384C6F206BCE880035F567 /* KeyPathBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBinding.swift; sourceTree = "<group>"; };
+		07384C71206C10710035F567 /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
+		07384C73206C432B0035F567 /* KeyPathBindingNotificationCenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingNotificationCenterMock.swift; sourceTree = "<group>"; };
 		07D35D922069490400494DAF /* KeyPathBindings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyPathBindings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D35D952069490400494DAF /* KeyPathBindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyPathBindings.h; sourceTree = "<group>"; };
 		07D35D962069490400494DAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,9 +83,11 @@
 		07D35D942069490400494DAF /* KeyPathBindings */ = {
 			isa = PBXGroup;
 			children = (
+				07384C71206C10710035F567 /* DispatchQueue+Extensions.swift */,
 				07D35D962069490400494DAF /* Info.plist */,
-				07D35D952069490400494DAF /* KeyPathBindings.h */,
+				07384C6F206BCE880035F567 /* KeyPathBinding.swift */,
 				0736CB3D2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift */,
+				07D35D952069490400494DAF /* KeyPathBindings.h */,
 			);
 			path = KeyPathBindings;
 			sourceTree = "<group>";
@@ -84,7 +96,10 @@
 			isa = PBXGroup;
 			children = (
 				07D35DC8206949F400494DAF /* Info.plist */,
+				07384C73206C432B0035F567 /* KeyPathBindingNotificationCenterMock.swift */,
 				072C76C42069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift */,
+				0718770D206BC95E00BF7687 /* KeyPathBindingTests.swift */,
+				0718770F206BCA9E00BF7687 /* TestObject.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -200,6 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07384C72206C10710035F567 /* DispatchQueue+Extensions.swift in Sources */,
+				07384C70206BCE880035F567 /* KeyPathBinding.swift in Sources */,
 				0736CB3E2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,6 +225,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07384C74206C432B0035F567 /* KeyPathBindingNotificationCenterMock.swift in Sources */,
+				07187710206BCA9E00BF7687 /* TestObject.swift in Sources */,
+				0718770E206BC95E00BF7687 /* KeyPathBindingTests.swift in Sources */,
 				072C76C52069BD6700E7AE12 /* KeyPathBindingNotificationCenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

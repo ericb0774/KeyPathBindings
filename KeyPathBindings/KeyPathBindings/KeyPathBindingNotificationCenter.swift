@@ -40,12 +40,11 @@ private enum UserInfoKey: String {
 /// NotificationCenter upon which keyPath modification notifications are posted
 /// and observed. This class cannot be instantiated. Instead, access it via
 /// `NotificationCenter.keyPathBinding`.
-final public class KeyPathBindingNotificationCenter: NotificationCenter {
-    /// Prevent this class from being instantiated outside of this file.
-    fileprivate override init() {
+public class KeyPathBindingNotificationCenter: NotificationCenter {
+    /// Prevent this class from being instantiated outside of this module.
+    internal override init() {
         super.init()
     }
-
 
     /// Adds an observer of keyPath changes for an object.
     /// The returned value must be disposed of using `removeObserver()` when no longer needed.
@@ -95,7 +94,6 @@ final public class KeyPathBindingNotificationCenter: NotificationCenter {
 // MARK: - NotificationCenter extension providing `keyPathBinding`
 
 public extension NotificationCenter {
-
     /// The notification center to use to observe and notify about keyPath value changes.
     public static var keyPathBinding: KeyPathBindingNotificationCenter = {
         return KeyPathBindingNotificationCenter()

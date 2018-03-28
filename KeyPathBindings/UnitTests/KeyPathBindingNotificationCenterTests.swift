@@ -48,67 +48,53 @@ final class KeyPathBindingNotificationCenterTests: XCTestCase {
     }
 
     func test_ShouldSendNotificationsOfKeyPathChangesForAnObject() {
-        let object = Object()
+        let object = TestObject()
         var notificationCount = 0
 
-        let observer = sut.addObserver(forObject: object, keyPath: \Object.value1) { (change) in
+        let observer = sut.addObserver(forObject: object, keyPath: \TestObject.intValue1) { (change) in
             XCTAssertTrue(change.object === object)
-            XCTAssertTrue(change.keyPath === \Object.value1, "Received unexpected notification of keyPath change")
+            XCTAssertTrue(change.keyPath == \TestObject.intValue1, "Received unexpected notification of keyPath change")
 
             notificationCount += 1
         }
 
         // This change should trigger a notification.
-        object.value1 += 1
+        object.intValue1 += 1
         // This change should trigger a notification which we don't receive.
-        object.value2 += 1
+        object.intValue2 += 1
 
         XCTAssertEqual(notificationCount, 1)
         sut.removeObserver(observer)
     }
 
     func test_ShouldSendNotificationsOfMultipleKeyPathChangesForAnObject() {
-        let object = Object()
+        let object = TestObject()
         var notificationCount = 0
 
-        let observer = sut.addObserver(forObject: object, keyPaths: [\Object.value1, \Object.value2]) { (change) in
+        let observer = sut.addObserver(forObject: object, keyPaths: [\TestObject.intValue1, \TestObject.intValue2]) { (change) in
             XCTAssertTrue(change.object === object)
-            XCTAssertTrue((change.keyPath === \Object.value1) || (change.keyPath === \Object.value2), "Received unexpected notification of keyPath change")
+            XCTAssertTrue((change.keyPath == \TestObject.intValue1) || (change.keyPath == \TestObject.intValue2), "Received unexpected notification of keyPath change")
 
             notificationCount += 1
         }
 
         // These changes should each trigger a notification.
-        object.value1 += 1
-        object.value2 += 1
+        object.intValue1 += 1
+        object.intValue2 += 1
 
         XCTAssertEqual(notificationCount, 2)
         sut.removeObserver(observer)
     }
 
     func test_ShouldNotSendNotificationsOfChangesFromOtherObjects() {
-        let object1 = Object()
-        let object2 = Object()
+        let object1 = TestObject()
+        let object2 = TestObject()
 
-        let observer = sut.addObserver(forObject: object1, keyPath: \Object.value1) { (change) in
+        let observer = sut.addObserver(forObject: object1, keyPath: \TestObject.intValue1) { (change) in
             XCTFail("This notification should not have been received.")
         }
 
-        object2.value1 += 1
+        object2.intValue1 += 1
         sut.removeObserver(observer)
-    }
-}
-
-class Object {
-    var value1: Int = 1 {
-        didSet {
-            NotificationCenter.keyPathBinding.notify(object: self, keyPathValueChanged: \Object.value1)
-        }
-    }
-
-    var value2: Int = 1 {
-        didSet {
-            NotificationCenter.keyPathBinding.notify(object: self, keyPathValueChanged: \Object.value2)
-        }
     }
 }
