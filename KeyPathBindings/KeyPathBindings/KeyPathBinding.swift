@@ -79,7 +79,7 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
         self.notificationCenter = notificationCenter
 
         // Default mapper simply returns the source value.
-        // This cast is save because of the above prechecks to ensure the
+        // This cast is safe because of the above prechecks to ensure the
         // types are compatible unless a custom mapper is supplied.
         self.mapper = mapper ?? { (_, sourceValue, _) in return sourceValue as! ToValueType }
 
