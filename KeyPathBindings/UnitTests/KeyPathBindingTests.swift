@@ -162,7 +162,7 @@ final class KeyPathBindingTests: XCTestCase {
         }
     }
 
-    func test_DoesNotHoldStringReferenceToSource() {
+    func test_DoesNotHoldStrongReferenceToSource() {
         var object1: TestObject? = TestObject()
         let object2 = TestObject()
 
@@ -181,7 +181,7 @@ final class KeyPathBindingTests: XCTestCase {
         XCTAssertNil(objectRef)
     }
 
-    func test_DoesNotHoldStringReferenceToDestination() {
+    func test_DoesNotHoldStrongReferenceToDestination() {
         let object1 = TestObject()
         var object2: TestObject? = TestObject()
 
