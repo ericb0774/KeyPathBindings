@@ -89,6 +89,11 @@ public class KeyPathBindingNotificationCenter: NotificationCenter {
         let changeEvent = KeyPathValueChangeEvent(object: object, keyPath: keyPath)
         super.post(name: .keyPathValueChanged, object: object, userInfo: [UserInfoKey.keyPathValueChangeEvent: changeEvent])
     }
+
+    public func notify<T, U>(object: AnyObject, keyPathValueChanged keyPath: WritableKeyPath<T, U>) {
+        let changeEvent = KeyPathValueChangeEvent(object: object, keyPath: keyPath)
+        super.post(name: .keyPathValueChanged, object: object, userInfo: [UserInfoKey.keyPathValueChangeEvent: changeEvent])
+    }
 }
 
 // MARK: - NotificationCenter extension providing `keyPathBinding`

@@ -21,10 +21,10 @@
 
 import Foundation
 
-enum KeyPathBindingError: Error, CustomStringConvertible {
+public enum KeyPathBindingError: Error, CustomStringConvertible {
     case incompatibleTypes(sourceType: Any.Type, destinationType: Any.Type)
 
-    var description: String {
+    public var description: String {
         switch self {
         case .incompatibleTypes(let sourceType, let destinationType):
             return "Cannot bind source keyPath type \(sourceType) with destination keyPath type \(destinationType) without a custom map function."
@@ -46,15 +46,15 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
     // Allow module-level access for testing.
     internal var observer: Any?
 
-    private let dispatchQueue: DispatchQueue
+    private let dispatchQueue: DispatchQueue?
 
     public typealias KeyPathBindingMapper = (_ source: FromType, _ sourceValue: FromValueType, _ destination: ToType) -> ToValueType
     private var mapper: KeyPathBindingMapper!
 
-    init(from source: FromType, keyPath sourceKeyPath: KeyPath<FromType, FromValueType>,
+    public init(from source: FromType, keyPath sourceKeyPath: KeyPath<FromType, FromValueType>,
          to destination: ToType, keyPath destinationKeyPath: WritableKeyPath<ToType, ToValueType>,
          notificationCenter: KeyPathBindingNotificationCenter = NotificationCenter.keyPathBinding,
-         dispatchQueue: DispatchQueue = .main,
+         dispatchQueue: DispatchQueue? = nil,
          map mapper: KeyPathBindingMapper? = nil) throws {
 
         self.source = source
@@ -114,12 +114,19 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
             destination[keyPath: destinationKeyPath] = mappedValue
         }
 
-        if dispatchQueue == DispatchQueue.main {
-            assign(value: value)
-        }
-        else {
+        if let dispatchQueue = dispatchQueue {
             dispatchQueue.sync {
                 assign(value: value)
+            }
+        }
+        else {
+            if DispatchQueue.isMain {
+                assign(value: value)
+            }
+            else {
+                DispatchQueue.main.sync {
+                    assign(value: value)
+                }
             }
         }
     }
