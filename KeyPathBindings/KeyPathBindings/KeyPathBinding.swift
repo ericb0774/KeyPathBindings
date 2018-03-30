@@ -52,10 +52,10 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
     private var mapper: KeyPathBindingMapper!
 
     public init(from source: FromType, keyPath sourceKeyPath: KeyPath<FromType, FromValueType>,
-         to destination: ToType, keyPath destinationKeyPath: WritableKeyPath<ToType, ToValueType>,
-         notificationCenter: KeyPathBindingNotificationCenter = NotificationCenter.keyPathBinding,
-         dispatchQueue: DispatchQueue? = nil,
-         map mapper: KeyPathBindingMapper? = nil) throws {
+                to destination: ToType, keyPath destinationKeyPath: WritableKeyPath<ToType, ToValueType>,
+                notificationCenter: KeyPathBindingNotificationCenter = NotificationCenter.keyPathBinding,
+                dispatchQueue: DispatchQueue? = nil,
+                map mapper: KeyPathBindingMapper? = nil) throws {
 
         self.source = source
         self.destination = destination
