@@ -29,6 +29,7 @@ class ViewController: UIViewController, KeyPathBindingChangeNotifier {
     @IBOutlet private weak var uptimeLabel: UILabel!
     @IBOutlet private weak var slider: UISlider!
     @IBOutlet private weak var sliderValueLabel: UILabel!
+    @IBOutlet private weak var deviceTypeLabel: UILabel!
 
     static var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -44,21 +45,22 @@ class ViewController: UIViewController, KeyPathBindingChangeNotifier {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             do {
                 bindings = [
-                    try KeyPathBinding(from: appDelegate, keyPath: \AppDelegate.uptime, to: uptimeLabel, keyPath: \UILabel.text, map: { (_, date, _) in
+                    try (appDelegate, \AppDelegate.uptime) ||> (uptimeLabel, \UILabel.text, { (_, date, _) in
                         let calendar = Calendar.autoupdatingCurrent
                         let seconds = Int(date.timeIntervalSince(ViewController.startDate))
-                        var dc = DateComponents(calendar: calendar)
-                        dc.second = seconds
-                        if let time = calendar.date(from: dc) {
+                        var dateComponents = DateComponents(calendar: calendar)
+                        dateComponents.second = seconds
+                        if let time = calendar.date(from: dateComponents) {
                             return "Uptime: \(ViewController.dateFormatter.string(from: time))"
                         }
-
                         return "Uptime: unavailable"
                     }),
 
-                    try KeyPathBinding(from: slider, keyPath: \UISlider.value, to: self.sliderValueLabel, keyPath: \UILabel.text, map: { (_, value, _) in
+                    try (slider, \UISlider.value) ||> (sliderValueLabel, \UILabel.text, { (_, value, _) in
                         return "\(Int(value))"
-                    })
+                    }),
+
+                    try (UIDevice.current, \UIDevice.localizedModel) ||> (deviceTypeLabel, \UILabel.text)
                 ]
             }
             catch {

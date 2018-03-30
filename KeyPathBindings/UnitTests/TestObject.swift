@@ -35,6 +35,12 @@ final class TestObject: KeyPathBindingChangeNotifier {
         }
     }
 
+    var optionalInt3: Int? {
+        didSet {
+            notify(keyPathValueChanged: \TestObject.optionalInt3)
+        }
+    }
+
     var stringValue1: String = "Foo" {
         didSet {
             notify(keyPathValueChanged: \TestObject.stringValue1)

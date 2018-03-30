@@ -21,6 +21,21 @@
 
 import Foundation
 
+infix operator ||>
+//infix operator |>>
+
+public func ||> <FromType, FromValueType, ToType, ToValueType>(from: (FromType, KeyPath<FromType, FromValueType>),
+                                                               to: (ToType, WritableKeyPath<ToType, ToValueType>)) throws -> KeyPathBinding<FromType, FromValueType, ToType, ToValueType> {
+    return try KeyPathBinding(from: from.0, keyPath: from.1,
+                              to: to.0, keyPath: to.1, dispatchQueue: .main)
+}
+
+public func ||> <FromType, FromValueType, ToType, ToValueType>(from: (FromType, KeyPath<FromType, FromValueType>),
+                                                               to: (ToType, WritableKeyPath<ToType, ToValueType>, (_ source: FromType, _ sourceValue: FromValueType, _ destination: ToType) -> ToValueType)) throws -> KeyPathBinding<FromType, FromValueType, ToType, ToValueType> {
+    return try KeyPathBinding(from: from.0, keyPath: from.1,
+                              to: to.0, keyPath: to.1, dispatchQueue: .main, map: to.2)
+}
+
 public enum KeyPathBindingError: Error, CustomStringConvertible {
     case incompatibleTypes(sourceType: Any.Type, destinationType: Any.Type)
 
@@ -31,6 +46,16 @@ public enum KeyPathBindingError: Error, CustomStringConvertible {
         }
     }
 }
+
+//protocol OptionalProtocol {
+//    func wrappedType() -> Any.Type
+//}
+//
+//extension Optional: OptionalProtocol {
+//    func wrappedType() -> Any.Type {
+//        return Wrapped.self
+//    }
+//}
 
 public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where FromType: AnyObject, ToType: AnyObject {
 
@@ -69,7 +94,7 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
             let sourceKeyPathType = type(of: sourceKeyPath).valueType
             let destinationKeyPathType = type(of: destinationKeyPath).valueType
 
-            if sourceKeyPathType != destinationKeyPathType {
+            if (sourceKeyPathType != destinationKeyPathType) && (Optional<FromValueType>.self != destinationKeyPathType) {
                 throw KeyPathBindingError.incompatibleTypes(sourceType: sourceKeyPathType, destinationType: destinationKeyPathType)
             }
         }
@@ -115,8 +140,11 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
         }
 
         if let dispatchQueue = dispatchQueue {
-            dispatchQueue.sync {
-                assign(value: value)
+            if dispatchQueue == DispatchQueue.main {
+                dispatchQueue.async { assign(value: value) }
+            }
+            else {
+                dispatchQueue.sync { assign(value: value) }
             }
         }
         else {
@@ -124,9 +152,7 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
                 assign(value: value)
             }
             else {
-                DispatchQueue.main.sync {
-                    assign(value: value)
-                }
+                DispatchQueue.main.sync { assign(value: value) }
             }
         }
     }

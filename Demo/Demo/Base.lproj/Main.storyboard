@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14105" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -37,6 +37,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxt-TQ-7oJ">
+                                <rect key="frame" x="16" y="153" width="33" height="16"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -45,13 +51,17 @@
                             <constraint firstItem="4f4-ax-zkh" firstAttribute="top" secondItem="qrR-yE-guP" secondAttribute="bottom" constant="20" id="LyH-8G-JEm"/>
                             <constraint firstItem="qrR-yE-guP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Oo3-HX-hMo"/>
                             <constraint firstItem="qrR-yE-guP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="SxN-67-xcF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cxt-TQ-7oJ" secondAttribute="trailing" constant="16" id="Ywy-Wj-0Ar"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4f4-ax-zkh" secondAttribute="trailing" constant="20" id="aPE-bm-xUq"/>
                             <constraint firstItem="Esd-au-hwY" firstAttribute="top" secondItem="4f4-ax-zkh" secondAttribute="bottom" constant="8" id="bPl-8c-YDJ"/>
+                            <constraint firstItem="cxt-TQ-7oJ" firstAttribute="top" secondItem="Esd-au-hwY" secondAttribute="bottom" constant="20" id="gdw-gI-3WK"/>
+                            <constraint firstItem="cxt-TQ-7oJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sSk-vz-I4j"/>
                             <constraint firstItem="Esd-au-hwY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="v7p-eZ-rXb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="deviceTypeLabel" destination="cxt-TQ-7oJ" id="f76-Dn-S7p"/>
                         <outlet property="slider" destination="4f4-ax-zkh" id="ZrJ-Zx-ZHu"/>
                         <outlet property="sliderValueLabel" destination="Esd-au-hwY" id="Q8k-Eh-3nP"/>
                         <outlet property="uptimeLabel" destination="qrR-yE-guP" id="jOm-qC-zeD"/>

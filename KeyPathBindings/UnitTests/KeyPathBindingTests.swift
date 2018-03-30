@@ -162,6 +162,43 @@ final class KeyPathBindingTests: XCTestCase {
         }
     }
 
+    func test_AllowsBindingFromNonOptionalTypeToOptionalOfSameWrappedTypeWithoutMapper() {
+        let object1 = TestObject()
+        let object2 = TestObject()
+
+        do {
+            bindings = [
+                try KeyPathBinding(from: object1, keyPath: \TestObject.intValue1,
+                                   to: object2, keyPath: \TestObject.optionalInt3)
+            ]
+        }
+        catch {
+            XCTFail(error.localizedDescription)
+        }
+
+        XCTAssertNotNil(object2.optionalInt3, "Optional property should not be nil.")
+        XCTAssertEqual(object2.optionalInt3, object1.intValue1, "Optional property should have been assigned the initial non-optional value.")
+    }
+
+    func test_DoesNotAllowBindingFromOptionalTypeToNonOptionalOfSameTypeWithoutMapper() {
+        let object1 = TestObject()
+        let object2 = TestObject()
+
+        XCTAssertThrowsError(
+            _ = try KeyPathBinding(from: object1, keyPath: \TestObject.optionalInt3,
+                                   to: object2, keyPath: \TestObject.intValue1),
+            "Attempting to create a keyPath binding from an optional to a non-optional without a map function should throw"
+        ) { (error) in
+            switch error {
+            case KeyPathBindingError.incompatibleTypes(sourceType: _, destinationType: _):
+                break
+
+            default:
+                XCTFail("Expected KeyPathBindingError.incompatibleTypes error to be thrown, but received: \(error)")
+            }
+        }
+    }
+
     func test_DoesNotHoldStrongReferenceToSource() {
         var object1: TestObject? = TestObject()
         let object2 = TestObject()
