@@ -20,29 +20,30 @@
 // SOFTWARE.
 
 import Foundation
+import KeyPathBindings
 
-final class TestObject {
+final class TestObject: KeyPathBindingChangeNotifier {
     var intValue1: Int = 1 {
         didSet {
-            NotificationCenter.keyPathBinding.notify(object: self, keyPathValueChanged: \TestObject.intValue1)
+            notify(keyPathValueChanged: \TestObject.intValue1)
         }
     }
 
     var intValue2: Int = 1 {
         didSet {
-            NotificationCenter.keyPathBinding.notify(object: self, keyPathValueChanged: \TestObject.intValue2)
+            notify(keyPathValueChanged: \TestObject.intValue2)
         }
     }
 
     var stringValue1: String = "Foo" {
         didSet {
-            NotificationCenter.keyPathBinding.notify(object: self, keyPathValueChanged: \TestObject.stringValue1)
+            notify(keyPathValueChanged: \TestObject.stringValue1)
         }
     }
 
     var stringValue2: String = "Bar" {
         didSet {
-            NotificationCenter.keyPathBinding.notify(object: self, keyPathValueChanged: \TestObject.stringValue2)
+            notify(keyPathValueChanged: \TestObject.stringValue2)
         }
     }
 }

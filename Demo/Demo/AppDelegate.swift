@@ -23,7 +23,7 @@ import KeyPathBindings
 import UIKit
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate, KeyPathBindingChangeNotifier {
     var window: UIWindow?
     var uptime = Date()
 
@@ -34,7 +34,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         func updateUptime() {
             uptimeQueue.asyncAfter(deadline: .now() + 0.1) { [unowned self] in
                 self.uptime = Date()
-                NotificationCenter.keyPathBinding.notify(object: self, keyPathValueChanged: \AppDelegate.uptime)
+                self.notify(keyPathValueChanged: \AppDelegate.uptime)
                 updateUptime()
             }
         }

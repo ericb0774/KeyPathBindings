@@ -14,6 +14,7 @@
 		07384C70206BCE880035F567 /* KeyPathBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07384C6F206BCE880035F567 /* KeyPathBinding.swift */; };
 		07384C72206C10710035F567 /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07384C71206C10710035F567 /* DispatchQueue+Extensions.swift */; };
 		07384C74206C432B0035F567 /* KeyPathBindingNotificationCenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07384C73206C432B0035F567 /* KeyPathBindingNotificationCenterMock.swift */; };
+		07870221206EC50100A1833B /* KeyPathBindingChangeNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07870220206EC50100A1833B /* KeyPathBindingChangeNotifier.swift */; };
 		07D35D972069490400494DAF /* KeyPathBindings.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D35D952069490400494DAF /* KeyPathBindings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07D35DC9206949F400494DAF /* KeyPathBindings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D35D922069490400494DAF /* KeyPathBindings.framework */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		07384C6F206BCE880035F567 /* KeyPathBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBinding.swift; sourceTree = "<group>"; };
 		07384C71206C10710035F567 /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
 		07384C73206C432B0035F567 /* KeyPathBindingNotificationCenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingNotificationCenterMock.swift; sourceTree = "<group>"; };
+		07870220206EC50100A1833B /* KeyPathBindingChangeNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingChangeNotifier.swift; sourceTree = "<group>"; };
 		07D35D922069490400494DAF /* KeyPathBindings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyPathBindings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D35D952069490400494DAF /* KeyPathBindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyPathBindings.h; sourceTree = "<group>"; };
 		07D35D962069490400494DAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,8 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				07D35D942069490400494DAF /* KeyPathBindings */,
-				07D35DC5206949F400494DAF /* UnitTests */,
 				07D35D932069490400494DAF /* Products */,
+				07D35DC5206949F400494DAF /* UnitTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +88,7 @@
 				07384C71206C10710035F567 /* DispatchQueue+Extensions.swift */,
 				07D35D962069490400494DAF /* Info.plist */,
 				07384C6F206BCE880035F567 /* KeyPathBinding.swift */,
+				07870220206EC50100A1833B /* KeyPathBindingChangeNotifier.swift */,
 				0736CB3D2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift */,
 				07D35D952069490400494DAF /* KeyPathBindings.h */,
 			);
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07870221206EC50100A1833B /* KeyPathBindingChangeNotifier.swift in Sources */,
 				07384C72206C10710035F567 /* DispatchQueue+Extensions.swift in Sources */,
 				07384C70206BCE880035F567 /* KeyPathBinding.swift in Sources */,
 				0736CB3E2069BEA900D50AC1 /* KeyPathBindingNotificationCenter.swift in Sources */,

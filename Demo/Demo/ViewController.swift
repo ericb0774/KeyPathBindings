@@ -22,7 +22,7 @@
 import KeyPathBindings
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, KeyPathBindingChangeNotifier {
 
     var bindings: [Any?] = []
 
@@ -68,6 +68,6 @@ class ViewController: UIViewController {
     }
 
     @IBAction private func sliderValueChanged(_ sender: UISlider?) {
-        NotificationCenter.keyPathBinding.notify(object: self.slider, keyPathValueChanged: \UISlider.value)
+        notify(object: self.slider, keyPathValueChanged: \UISlider.value)
     }
 }
