@@ -1,0 +1,6 @@
+language: objective-c
+xcode_workspace: KeyPathBindings.xcworkspace
+xcode_scheme: KeyPathBindings
+os: osx
+osx_image: xcode9.2
+
