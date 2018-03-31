@@ -3,5 +3,5 @@ xcode_workspace: KeyPathBindings.xcworkspace
 xcode_scheme: KeyPathBindings
 os: osx
 osx_image: xcode9.3beta
-script: xcodebuild clean build -sdk iphonesimulator -workspace KeyPathBindings.xcworkspace -scheme KeyPathBindings CODE_SIGNING_REQUIRED=NO
+script: xcodebuild test -workspace KeyPathBindings.xcworkspace -scheme KeyPathBindings -destination 'platform=iOS Simulator,name=iPhone SE,OS=10.3.1' && xcodebuild clean build -sdk iphonesimulator -workspace KeyPathBindings.xcworkspace -scheme KeyPathBindings CODE_SIGNING_REQUIRED=NO
 
