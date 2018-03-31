@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bbs-Pb-OdK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,11 +7,12 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--KeyPathBindings-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,25 +21,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrR-yE-guP">
-                                <rect key="frame" x="16" y="36" width="42" height="21"/>
+                                <rect key="frame" x="16" y="80" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="42" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="4f4-ax-zkh">
-                                <rect key="frame" x="18" y="77" width="339" height="31"/>
+                                <rect key="frame" x="18" y="121" width="339" height="31"/>
                                 <connections>
                                     <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="rVS-Jc-zHo"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Esd-au-hwY">
-                                <rect key="frame" x="168.5" y="115" width="38" height="18"/>
+                                <rect key="frame" x="168.5" y="159" width="38" height="18"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxt-TQ-7oJ">
-                                <rect key="frame" x="16" y="153" width="33" height="16"/>
+                                <rect key="frame" x="16" y="197" width="33" height="16"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -60,6 +61,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="KeyPathBindings" id="BKc-Wx-VZQ">
+                        <barButtonItem key="rightBarButtonItem" title="Timer" id="MxC-RT-du6">
+                            <connections>
+                                <segue destination="HAv-ej-HZQ" kind="show" id="Lv5-mG-5UC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="deviceTypeLabel" destination="cxt-TQ-7oJ" id="f76-Dn-S7p"/>
                         <outlet property="slider" destination="4f4-ax-zkh" id="ZrJ-Zx-ZHu"/>
@@ -69,6 +77,58 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="972" y="33.733133433283363"/>
+        </scene>
+        <!--Timer-->
+        <scene sceneID="9g4-8d-J2H">
+            <objects>
+                <viewController id="HAv-ej-HZQ" customClass="TimerViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tgn-SX-tlh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mnf-AZ-ZZW">
+                                <rect key="frame" x="157" y="167" width="61.5" height="31.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="IjH-QD-Cx9" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Mnf-AZ-ZZW" secondAttribute="trailing" constant="16" id="0pg-NS-DsM"/>
+                            <constraint firstItem="Mnf-AZ-ZZW" firstAttribute="top" secondItem="IjH-QD-Cx9" secondAttribute="bottom" multiplier="25%" id="LmT-1a-gtb"/>
+                            <constraint firstItem="Mnf-AZ-ZZW" firstAttribute="centerX" secondItem="tgn-SX-tlh" secondAttribute="centerX" id="hN5-HS-xBr"/>
+                            <constraint firstItem="Mnf-AZ-ZZW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IjH-QD-Cx9" secondAttribute="leading" constant="16" id="u7J-zG-IgG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IjH-QD-Cx9"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Timer" id="H3r-6T-WuL"/>
+                    <connections>
+                        <outlet property="timerLabel" destination="Mnf-AZ-ZZW" id="l0c-wL-GCh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D8t-xa-PfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1951" y="34"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CZl-Od-zV1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bbs-Pb-OdK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJZ-XA-NRx">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="s54-LQ-j6E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AbN-5C-au2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="25" y="34"/>
         </scene>
     </scenes>
 </document>
