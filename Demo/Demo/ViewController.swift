@@ -39,6 +39,8 @@ class ViewController: UIViewController, KeyPathBindingChangeNotifier {
 
     static let startDate = Date()
 
+    var observer: Any?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,16 +62,32 @@ class ViewController: UIViewController, KeyPathBindingChangeNotifier {
                         return "\(Int(value))"
                     }),
 
+                    // Since UIDevice.localizedModel never changes, a simple assignment could be used here ;)
                     try (UIDevice.current, \UIDevice.localizedModel) ||> (deviceTypeLabel, \UILabel.text)
                 ]
             }
             catch {
                 print(error.localizedDescription)
             }
+
+            observer = NotificationCenter.keyPathBinding.addObserver(forObject: appDelegate, keyPath: \AppDelegate.uptime) { [weak self] (changeEvent) in
+                print(changeEvent)
+
+                // Cancel the observer after the first receive.
+                if let observer = self?.observer {
+                    NotificationCenter.keyPathBinding.removeObserver(observer)
+                }
+            }
         }
     }
 
     @IBAction private func sliderValueChanged(_ sender: UISlider?) {
         notify(object: self.slider, keyPathValueChanged: \UISlider.value)
+    }
+
+    deinit {
+        if let observer = observer {
+            NotificationCenter.keyPathBinding.removeObserver(observer)
+        }
     }
 }
