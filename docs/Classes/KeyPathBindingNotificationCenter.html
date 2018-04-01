@@ -14,7 +14,7 @@
     <a title="KeyPathBindingNotificationCenter Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">KeyPathBindings Docs</a> (69% documented)</p>
+        <p><a href="../index.html">KeyPathBindings Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/ericb0774/KeyPathBindings"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -323,7 +323,7 @@ The returned value must be disposed of using <code>removeObserver()</code> when 
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Sends a notification of a keyPath value change for an object.</p>
 
                       </div>
                       <div class="declaration">
@@ -333,6 +333,37 @@ The returned value must be disposed of using <code>removeObserver()</code> when 
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">notify</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="n">keyPathValueChanged</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">WritableKeyPath</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>object</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The object property&rsquo;s keyPath.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

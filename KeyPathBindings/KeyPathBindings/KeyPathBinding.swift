@@ -59,14 +59,22 @@ public enum KeyPathBindingError: Error, CustomStringConvertible {
     /// without a map closure.
     case incompatibleTypes(sourceType: Any.Type, destinationType: Any.Type)
 
+    /// Attempted to create a binding to the same property on a single object.
+    case sameObjectAndProperty
+
     public var description: String {
         switch self {
         case .incompatibleTypes(let sourceType, let destinationType):
             return "Cannot bind source keyPath type \(sourceType) with destination keyPath type \(destinationType) without a custom map function."
+
+        case .sameObjectAndProperty:
+            return "Cannot bind an object's property to itself."
         }
     }
 }
 
+/// Creates a keyPath binding from a source object's property to a destination
+/// object's property.
 public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where FromType: AnyObject, ToType: AnyObject {
 
     // Ensure references to source and destination are weak.
@@ -83,9 +91,25 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
 
     private let dispatchQueue: DispatchQueue?
 
+    /// Describes a closure which maps a source property type to the expected
+    /// destination property type, allowing bindings between properties of
+    /// different types.
     public typealias KeyPathBindingMapper = (_ source: FromType, _ sourceValue: FromValueType, _ destination: ToType) -> ToValueType
     private var mapper: KeyPathBindingMapper!
 
+    /// Creates a keyPath binding object, causing changes in the source object's
+    /// property to be assigned to the destination object's property over the
+    /// lifetime of both objects.
+    ///
+    /// - Parameters:
+    ///   - source: The source object.
+    ///   - sourceKeyPath: The keyPath to the source object's property.
+    ///   - destination: The destination object.
+    ///   - destinationKeyPath: The keyPath to the destination object's property.
+    ///   - notificationCenter: The `NotificationCenter` to use. Defaults to `NotificationCenter.keyPathBinding`.
+    ///   - dispatchQueue: The `DispatchQueue` to use when assigning the destination property. Defaults to `nil`.
+    ///   - mapper: The map closure to use if the bound properties are of different types.
+    /// - Throws: `KeyPathBindingError` if the binding cannot be established.
     public init(from source: FromType, keyPath sourceKeyPath: KeyPath<FromType, FromValueType>,
                 to destination: ToType, keyPath destinationKeyPath: WritableKeyPath<ToType, ToValueType>,
                 notificationCenter: KeyPathBindingNotificationCenter = NotificationCenter.keyPathBinding,
@@ -106,6 +130,11 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
 
             if (sourceKeyPathType != destinationKeyPathType) && (Optional<FromValueType>.self != destinationKeyPathType) {
                 throw KeyPathBindingError.incompatibleTypes(sourceType: sourceKeyPathType, destinationType: destinationKeyPathType)
+            }
+            else {
+                if source === destination {
+                    throw KeyPathBindingError.sameObjectAndProperty
+                }
             }
         }
 

@@ -66,6 +66,24 @@ final class KeyPathBindingTests: XCTestCase {
         XCTAssertEqual(object2.stringValue1, object1.stringValue1, "object2.stringValue1 should be bound to value changes in object1.stringValue1")
     }
 
+    func test_DoesNotAllowTheSameObjectAndPropertyToBindToItself() {
+        let object = TestObject()
+
+        XCTAssertThrowsError(
+            _ = try KeyPathBinding(from: object, keyPath: \TestObject.intValue1,
+                                   to: object, keyPath: \TestObject.intValue1),
+            "Attempting to create a keyPath binding to the same object property should should throw"
+        ) { (error) in
+            switch error {
+            case KeyPathBindingError.sameObjectAndProperty:
+                break
+
+            default:
+                XCTFail("Expected KeyPathBindingError.sameObjectAndProperty error to be thrown, but received: \(error)")
+            }
+        }
+    }
+
     func test_PerformsBindOnMainQueueByDefault() {
         let mainQueueKey = DispatchSpecificKey<()>()
         DispatchQueue.main.setSpecific(key: mainQueueKey, value: ())
