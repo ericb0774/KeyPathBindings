@@ -22,21 +22,41 @@
 import Foundation
 
 infix operator ||>
-//infix operator |>>
 
+/// Creates a keyPath binding between properties of the same type between two
+/// objects. The binding is always executed on the `main` dispatch queue.
+///
+/// - Parameters:
+///   - from: The binding source object and keyPath (tuple)
+///   - to: The binding destination object and keyPath (tuple)
+/// - Returns: The `KeyPathBinding` instance
+/// - Throws: `KeyPathBindingError` if the binding cannot be established.
 public func ||> <FromType, FromValueType, ToType, ToValueType>(from: (FromType, KeyPath<FromType, FromValueType>),
                                                                to: (ToType, WritableKeyPath<ToType, ToValueType>)) throws -> KeyPathBinding<FromType, FromValueType, ToType, ToValueType> {
     return try KeyPathBinding(from: from.0, keyPath: from.1,
                               to: to.0, keyPath: to.1, dispatchQueue: .main)
 }
 
+/// Creates a keyPath binding between properties of different types between two
+/// objects. The binding is always executed on the `main` dispatch queue.
+///
+/// - Parameters:
+///   - from: The binding source object and keyPath (tuple)
+///   - to: The bindng destination object, keyPath, and map closure (tuple)
+/// - Returns: The `KeyPathBinding` instance
+/// - Throws: `KeyPathBindingError` if the binding cannot be established.
 public func ||> <FromType, FromValueType, ToType, ToValueType>(from: (FromType, KeyPath<FromType, FromValueType>),
                                                                to: (ToType, WritableKeyPath<ToType, ToValueType>, (_ source: FromType, _ sourceValue: FromValueType, _ destination: ToType) -> ToValueType)) throws -> KeyPathBinding<FromType, FromValueType, ToType, ToValueType> {
     return try KeyPathBinding(from: from.0, keyPath: from.1,
                               to: to.0, keyPath: to.1, dispatchQueue: .main, map: to.2)
 }
 
+/// Errors that can occur while creating a `KeyPathBinding`
+///
+/// - incompatibleTypes: Attempted to create a binding between properties of different types without a map closure.
 public enum KeyPathBindingError: Error, CustomStringConvertible {
+    /// Attempted to create a binding between properties of different types
+    /// without a map closure.
     case incompatibleTypes(sourceType: Any.Type, destinationType: Any.Type)
 
     public var description: String {
@@ -46,16 +66,6 @@ public enum KeyPathBindingError: Error, CustomStringConvertible {
         }
     }
 }
-
-//protocol OptionalProtocol {
-//    func wrappedType() -> Any.Type
-//}
-//
-//extension Optional: OptionalProtocol {
-//    func wrappedType() -> Any.Type {
-//        return Wrapped.self
-//    }
-//}
 
 public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where FromType: AnyObject, ToType: AnyObject {
 

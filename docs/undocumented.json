@@ -1,0 +1,61 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/eric/Development/github/ericb0774/KeyPathBindings/KeyPathBindings/KeyPathBindings/KeyPathBinding.swift",
+      "line": 70,
+      "symbol": "KeyPathBinding",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/eric/Development/github/ericb0774/KeyPathBindings/KeyPathBindings/KeyPathBindings/KeyPathBinding.swift",
+      "line": 86,
+      "symbol": "KeyPathBinding.KeyPathBindingMapper",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/eric/Development/github/ericb0774/KeyPathBindings/KeyPathBindings/KeyPathBindings/KeyPathBinding.swift",
+      "line": 89,
+      "symbol": "KeyPathBinding.init(from:keyPath:to:keyPath:notificationCenter:dispatchQueue:map:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/eric/Development/github/ericb0774/KeyPathBindings/KeyPathBindings/KeyPathBindings/KeyPathBindingChangeNotifier.swift",
+      "line": 54,
+      "symbol": "KeyPathBindingChangeNotifier.notify(keyPathValueChanged:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/eric/Development/github/ericb0774/KeyPathBindings/KeyPathBindings/KeyPathBindings/KeyPathBindingChangeNotifier.swift",
+      "line": 58,
+      "symbol": "KeyPathBindingChangeNotifier.notify(keyPathValueChanged:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/eric/Development/github/ericb0774/KeyPathBindings/KeyPathBindings/KeyPathBindings/KeyPathBindingChangeNotifier.swift",
+      "line": 62,
+      "symbol": "KeyPathBindingChangeNotifier.notify(object:keyPathValueChanged:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/eric/Development/github/ericb0774/KeyPathBindings/KeyPathBindings/KeyPathBindings/KeyPathBindingChangeNotifier.swift",
+      "line": 66,
+      "symbol": "KeyPathBindingChangeNotifier.notify(object:keyPathValueChanged:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/eric/Development/github/ericb0774/KeyPathBindings/KeyPathBindings/KeyPathBindings/KeyPathBindingNotificationCenter.swift",
+      "line": 93,
+      "symbol": "KeyPathBindingNotificationCenter.notify(object:keyPathValueChanged:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/eric/Development/github/ericb0774/KeyPathBindings/KeyPathBindings"
+}

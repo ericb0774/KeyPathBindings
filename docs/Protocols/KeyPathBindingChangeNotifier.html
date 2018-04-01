@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>KeyPathBindingChangeNotifier Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/KeyPathBindingChangeNotifier" class="dashAnchor"></a>
+    <a title="KeyPathBindingChangeNotifier Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">KeyPathBindings Docs</a> (69% documented)</p>
+        <p class="header-right"><a href="https://github.com/ericb0774/KeyPathBindings"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">KeyPathBindings Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        KeyPathBindingChangeNotifier Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/KeyPathBinding.html">KeyPathBinding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyPathBindingNotificationCenter.html">KeyPathBindingNotificationCenter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/KeyPathBindingError.html">KeyPathBindingError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NotificationCenter.html">NotificationCenter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:15KeyPathBindings3oogoiAA0aB7BindingCyxq_q0_q1_Gx_s0aB0Cyxq_Gt_q0__s08WritableaB0Cyq0_q1_Gq1_x_q_q0_tcttKRlzCRl0_Cr2_lF">||&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:15KeyPathBindings3oogoiAA0aB7BindingCyxq_q0_q1_Gx_s0aB0Cyxq_Gt_q0__s08WritableaB0Cyq0_q1_GttKRlzCRl0_Cr2_lF">||&gt;(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/KeyPathBindingChangeNotifier.html">KeyPathBindingChangeNotifier</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:15KeyPathBindings0aB16ValueChangeEventV">KeyPathValueChangeEvent</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>KeyPathBindingChangeNotifier</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">KeyPathBindingChangeNotifier</span></code></pre>
+
+                </div>
+              </div>
+            <p>Describes an object that sends notifications about value changes via
+keyPath.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KeyPathBindings0aB21BindingChangeNotifierP6notifyys03AnyaB0C03keyB12ValueChanged_tF"></a>
+                    <a name="//apple_ref/swift/Method/notify(keyPathValueChanged:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KeyPathBindings0aB21BindingChangeNotifierP6notifyys03AnyaB0C03keyB12ValueChanged_tF">notify(keyPathValueChanged:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sends a notification about a value change by keyPath.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+<p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">notify</span><span class="p">(</span><span class="nv">keyPathValueChanged</span><span class="p">:</span> <span class="kt">AnyKeyPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPathValueChanged</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The keyPath.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KeyPathBindings0aB21BindingChangeNotifierP6notifyys08WritableaB0Cyqd__qd_0_G03keyB12ValueChanged_tr0_lF"></a>
+                    <a name="//apple_ref/swift/Method/notify(keyPathValueChanged:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KeyPathBindings0aB21BindingChangeNotifierP6notifyys08WritableaB0Cyqd__qd_0_G03keyB12ValueChanged_tr0_lF">notify(keyPathValueChanged:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sends a notification about a value change by keyPath.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">notify</span><span class="o">&lt;</span><span class="kt">FromType</span><span class="p">,</span> <span class="kt">ValueType</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">keyPathValueChanged</span><span class="p">:</span> <span class="kt">WritableKeyPath</span><span class="o">&lt;</span><span class="kt">FromType</span><span class="p">,</span> <span class="kt">ValueType</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPathValueChanged</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The keyPath.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KeyPathBindings0aB21BindingChangeNotifierP6notifyyyXl6object_s03AnyaB0C03keyB12ValueChangedtF"></a>
+                    <a name="//apple_ref/swift/Method/notify(object:keyPathValueChanged:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KeyPathBindings0aB21BindingChangeNotifierP6notifyyyXl6object_s03AnyaB0C03keyB12ValueChangedtF">notify(object:keyPathValueChanged:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sends a notification about a value change by keyPath on a given object.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+<p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">notify</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">keyPathValueChanged</span><span class="p">:</span> <span class="kt">AnyKeyPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>object</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The object whose value changed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPathValueChanged</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The keyPath.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KeyPathBindings0aB21BindingChangeNotifierP6notifyyyXl6object_s08WritableaB0Cyqd__qd_0_G03keyB12ValueChangedtr0_lF"></a>
+                    <a name="//apple_ref/swift/Method/notify(object:keyPathValueChanged:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KeyPathBindings0aB21BindingChangeNotifierP6notifyyyXl6object_s08WritableaB0Cyqd__qd_0_G03keyB12ValueChangedtr0_lF">notify(object:keyPathValueChanged:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sends a notification about a value change by keyPath on a given object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">notify</span><span class="o">&lt;</span><span class="kt">FromType</span><span class="p">,</span> <span class="kt">ValueType</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">keyPathValueChanged</span><span class="p">:</span> <span class="kt">WritableKeyPath</span><span class="o">&lt;</span><span class="kt">FromType</span><span class="p">,</span> <span class="kt">ValueType</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>object</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The object whose value changed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPathValueChanged</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The keyPath.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://ericb0774.net" target="_blank" rel="external">Eric Baker</a>. All rights reserved. (Last updated: 2018-04-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

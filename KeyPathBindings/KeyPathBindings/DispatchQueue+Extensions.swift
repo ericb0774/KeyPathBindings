@@ -21,6 +21,7 @@
 
 import Foundation
 
+// MARK: - Extension to `DispatchQueue` for identifying the `main` queue.
 extension DispatchQueue {
     private static var mainQueueKey: DispatchSpecificKey<()> = {
         let key = DispatchSpecificKey<()>()
@@ -28,6 +29,8 @@ extension DispatchQueue {
         return key
     }()
 
+    /// Returns `true` if current execution is on the `main` dispatch queue;
+    /// otherwise returns `false`.
     static var isMain: Bool {
         return DispatchQueue.getSpecific(key: mainQueueKey) != nil
     }

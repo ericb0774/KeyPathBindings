@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		07D4559B2071579A00CAA774 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 07D4559E2071579A00CAA774 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				07D4559F2071592B00CAA774 /* Build Documentation */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		0718770E206BC95E00BF7687 /* KeyPathBindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718770D206BC95E00BF7687 /* KeyPathBindingTests.swift */; };
 		07187710206BCA9E00BF7687 /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718770F206BCA9E00BF7687 /* TestObject.swift */; };
@@ -176,6 +190,10 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
+					07D4559B2071579A00CAA774 = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 07D35D8C2069490400494DAF /* Build configuration list for PBXProject "KeyPathBindings" */;
@@ -192,6 +210,7 @@
 			targets = (
 				07D35D912069490400494DAF /* KeyPathBindings */,
 				07D35DC3206949F400494DAF /* UnitTests */,
+				07D4559B2071579A00CAA774 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -212,6 +231,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		07D4559F2071592B00CAA774 /* Build Documentation */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Documentation";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/jazzy --clean --author \"Eric Baker\" --author_url \"https://ericb0774.net\" --github_url \"https://github.com/ericb0774/KeyPathBindings\" --module-version \"0.0.1\" --xcodebuild-arguments \"-scheme,KeyPathBindings\" --module \"KeyPathBindings\" --output \"../docs\"";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07D35D8D2069490400494DAF /* Sources */ = {
@@ -441,6 +478,24 @@
 			};
 			name = Release;
 		};
+		07D4559C2071579A00CAA774 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7CRPKLHC7G;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		07D4559D2071579A00CAA774 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7CRPKLHC7G;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -467,6 +522,15 @@
 			buildConfigurations = (
 				07D35DCD206949F400494DAF /* Debug */,
 				07D35DCE206949F400494DAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07D4559E2071579A00CAA774 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07D4559C2071579A00CAA774 /* Debug */,
+				07D4559D2071579A00CAA774 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
