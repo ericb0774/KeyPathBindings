@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = "KeyPathBindings"
-  s.version       = "0.0.1"
+  s.version       = "0.0.2"
   s.summary       = "Type-safe keyPath bindings in Swift"
   s.description   = <<-DESC
   A simple way to create property bindings between pure Swift objects that are type-safe.

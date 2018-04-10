@@ -31,14 +31,8 @@ public struct KeyPathValueChangeEvent {
     let object: AnyObject
     /// The keyPath to the object's property.
     let keyPath: AnyKeyPath
-
+    /// The property's previous value, if available.
     let oldValue: Any?
-
-    public init(object: AnyObject, keyPath: AnyKeyPath, oldValue: Any? = nil) {
-        self.object = object
-        self.keyPath = keyPath
-        self.oldValue = oldValue
-    }
 }
 
 private enum UserInfoKey: String {
@@ -94,7 +88,7 @@ public class KeyPathBindingNotificationCenter: NotificationCenter {
     ///   - object: The object.
     ///   - keyPath: The object property's keyPath.
     public func notify(object: AnyObject, keyPathValueChanged keyPath: AnyKeyPath) {
-        let changeEvent = KeyPathValueChangeEvent(object: object, keyPath: keyPath)
+        let changeEvent = KeyPathValueChangeEvent(object: object, keyPath: keyPath, oldValue: nil)
         super.post(name: .keyPathValueChanged, object: object, userInfo: [UserInfoKey.keyPathValueChangeEvent: changeEvent])
     }
 
@@ -103,12 +97,18 @@ public class KeyPathBindingNotificationCenter: NotificationCenter {
     /// - Parameters:
     ///   - object: The object.
     ///   - keyPath: The object property's keyPath.
-    public func notify<T, U>(object: AnyObject, keyPathValueChanged keyPath: WritableKeyPath<T, U>) {
-        let changeEvent = KeyPathValueChangeEvent(object: object, keyPath: keyPath)
+    public func notify<FromType, FromValueType>(object: AnyObject, keyPathValueChanged keyPath: WritableKeyPath<FromType, FromValueType>) {
+        let changeEvent = KeyPathValueChangeEvent(object: object, keyPath: keyPath, oldValue: nil)
         super.post(name: .keyPathValueChanged, object: object, userInfo: [UserInfoKey.keyPathValueChangeEvent: changeEvent])
     }
 
-    public func notify<T, U>(object: AnyObject, keyPathValueChanged keyPath: WritableKeyPath<T, U>, oldValue: U) {
+    /// Sends a notification of a keyPath value change for an object.
+    ///
+    /// - Parameters:
+    ///   - object: The object.
+    ///   - keyPath: The object property's keyPath.
+    ///   - oldValue: The old value.
+    public func notify<FromType, FromValueType>(object: AnyObject, keyPathValueChanged keyPath: WritableKeyPath<FromType, FromValueType>, oldValue: FromValueType) {
         let changeEvent = KeyPathValueChangeEvent(object: object, keyPath: keyPath, oldValue: oldValue)
         super.post(name: .keyPathValueChanged, object: object, userInfo: [UserInfoKey.keyPathValueChangeEvent: changeEvent])
     }

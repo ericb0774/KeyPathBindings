@@ -52,6 +52,9 @@
 		07384C71206C10710035F567 /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
 		07384C73206C432B0035F567 /* KeyPathBindingNotificationCenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingNotificationCenterMock.swift; sourceTree = "<group>"; };
 		07870220206EC50100A1833B /* KeyPathBindingChangeNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathBindingChangeNotifier.swift; sourceTree = "<group>"; };
+		07894BB2207D770300EC90A6 /* KeyPathBindings.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = KeyPathBindings.podspec; path = ../KeyPathBindings.podspec; sourceTree = "<group>"; };
+		07894BB3207D770B00EC90A6 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		07894BB4207D771200EC90A6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		07D35D922069490400494DAF /* KeyPathBindings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyPathBindings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D35D952069490400494DAF /* KeyPathBindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyPathBindings.h; sourceTree = "<group>"; };
 		07D35D962069490400494DAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,7 +85,10 @@
 			isa = PBXGroup;
 			children = (
 				07D35D942069490400494DAF /* KeyPathBindings */,
+				07894BB2207D770300EC90A6 /* KeyPathBindings.podspec */,
+				07894BB3207D770B00EC90A6 /* LICENSE */,
 				07D35D932069490400494DAF /* Products */,
+				07894BB4207D771200EC90A6 /* README.md */,
 				07D35DC5206949F400494DAF /* UnitTests */,
 			);
 			sourceTree = "<group>";

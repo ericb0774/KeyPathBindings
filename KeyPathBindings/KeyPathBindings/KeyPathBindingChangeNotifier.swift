@@ -30,6 +30,11 @@ public protocol KeyPathBindingChangeNotifier {
     /// - Parameter keyPathValueChanged: The keyPath.
     func notify<FromType, ValueType>(keyPathValueChanged: WritableKeyPath<FromType, ValueType>)
 
+    /// Sends a notification about a vlue change by keyPath.
+    ///
+    /// - Parameters:
+    ///   - keyPathValueChanged: The keyPath.
+    ///   - oldValue: The old value.
     func notify<FromType, ValueType>(keyPathValueChanged: WritableKeyPath<FromType, ValueType>, oldValue: ValueType)
 
     /// Sends a notification about a value change by keyPath on a given object.
@@ -39,6 +44,12 @@ public protocol KeyPathBindingChangeNotifier {
     ///   - keyPathValueChanged: The keyPath.
     func notify<FromType, ValueType>(object: AnyObject, keyPathValueChanged: WritableKeyPath<FromType, ValueType>)
 
+    /// Sends a notification about a value change by keyPath on a given object.
+    ///
+    /// - Parameters:
+    ///   - object: The object whose value changed.
+    ///   - keyPathValueChanged: The keyPath.
+    ///   - oldValue: The old value.
     func notify<FromType, ValueType>(object: AnyObject, keyPathValueChanged: WritableKeyPath<FromType, ValueType>, oldValue: ValueType)
 }
 
@@ -51,6 +62,11 @@ public extension KeyPathBindingChangeNotifier where Self: AnyObject {
         notify(object: self, keyPathValueChanged: keyPath)
     }
 
+    /// Sends a notification about a value change by keyPath on `self`.
+    ///
+    /// - Parameters:
+    ///   - keyPath: The keyPath.
+    ///   - oldValue: The old value.
     public func notify<FromType, ValueType>(keyPathValueChanged keyPath: WritableKeyPath<FromType, ValueType>, oldValue: ValueType) {
         notify(object: self, keyPathValueChanged: keyPath, oldValue: oldValue)
     }
@@ -64,6 +80,12 @@ public extension KeyPathBindingChangeNotifier where Self: AnyObject {
         NotificationCenter.keyPathBinding.notify(object: object, keyPathValueChanged: keyPath)
     }
 
+    /// Sends a notification about a value change on an object by keyPath.
+    ///
+    /// - Parameters:
+    ///   - object: The object whose property changed.
+    ///   - keyPath: The keyPath
+    ///   - oldValue: The old value.
     public func notify<FromType, ValueType>(object: AnyObject, keyPathValueChanged keyPath: WritableKeyPath<FromType, ValueType>, oldValue: ValueType) {
         NotificationCenter.keyPathBinding.notify(object: object, keyPathValueChanged: keyPath, oldValue: oldValue)
     }
