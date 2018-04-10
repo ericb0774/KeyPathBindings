@@ -25,31 +25,31 @@ import KeyPathBindings
 final class TestObject: KeyPathBindingChangeNotifier {
     var intValue1: Int = 1 {
         didSet {
-            notify(keyPathValueChanged: \TestObject.intValue1)
+            notify(keyPathValueChanged: \TestObject.intValue1, oldValue: oldValue)
         }
     }
 
     var intValue2: Int = 1 {
         didSet {
-            notify(keyPathValueChanged: \TestObject.intValue2)
+            notify(keyPathValueChanged: \TestObject.intValue2, oldValue: oldValue)
         }
     }
 
     var optionalInt3: Int? {
         didSet {
-            notify(keyPathValueChanged: \TestObject.optionalInt3)
+            notify(keyPathValueChanged: \TestObject.optionalInt3, oldValue: oldValue)
         }
     }
 
     var stringValue1: String = "Foo" {
         didSet {
-            notify(keyPathValueChanged: \TestObject.stringValue1)
+            notify(keyPathValueChanged: \TestObject.stringValue1, oldValue: oldValue)
         }
     }
 
     var stringValue2: String = "Bar" {
         didSet {
-            notify(keyPathValueChanged: \TestObject.stringValue2)
+            notify(keyPathValueChanged: \TestObject.stringValue2, oldValue: oldValue)
         }
     }
 }

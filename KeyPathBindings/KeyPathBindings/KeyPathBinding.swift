@@ -46,7 +46,7 @@ public func ||> <FromType, FromValueType, ToType, ToValueType>(from: (FromType, 
 /// - Returns: The `KeyPathBinding` instance
 /// - Throws: `KeyPathBindingError` if the binding cannot be established.
 public func ||> <FromType, FromValueType, ToType, ToValueType>(from: (FromType, KeyPath<FromType, FromValueType>),
-                                                               to: (ToType, WritableKeyPath<ToType, ToValueType>, (_ source: FromType, _ sourceValue: FromValueType, _ destination: ToType) -> ToValueType)) throws -> KeyPathBinding<FromType, FromValueType, ToType, ToValueType> {
+                                                               to: (ToType, WritableKeyPath<ToType, ToValueType>, (_ source: FromType, _ destination: ToType, _ oldValue: FromValueType?, _ newValue: FromValueType) -> ToValueType)) throws -> KeyPathBinding<FromType, FromValueType, ToType, ToValueType> {
     return try KeyPathBinding(from: from.0, keyPath: from.1,
                               to: to.0, keyPath: to.1, dispatchQueue: .main, map: to.2)
 }
@@ -94,7 +94,7 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
     /// Describes a closure which maps a source property type to the expected
     /// destination property type, allowing bindings between properties of
     /// different types.
-    public typealias KeyPathBindingMapper = (_ source: FromType, _ sourceValue: FromValueType, _ destination: ToType) -> ToValueType
+    public typealias KeyPathBindingMapper = (_ source: FromType, _ destination: ToType, _ oldValue: FromValueType?, _ newValue: FromValueType) -> ToValueType
     private var mapper: KeyPathBindingMapper!
 
     /// Creates a keyPath binding object, causing changes in the source object's
@@ -145,10 +145,10 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
         // Default mapper simply returns the source value.
         // This cast is safe because of the above prechecks to ensure the
         // types are compatible unless a custom mapper is supplied.
-        self.mapper = mapper ?? { (_, sourceValue, _) in return sourceValue as! ToValueType }
+        self.mapper = mapper ?? { (_, _, _, newValue) in return newValue as! ToValueType }
 
-        self.observer = notificationCenter.addObserver(forObject: source, keyPath: sourceKeyPath) { [weak self] (_) in
-            self?.sourceValueChanged()
+        self.observer = notificationCenter.addObserver(forObject: source, keyPath: sourceKeyPath) { [weak self] event in
+            self?.sourceValueChanged(event)
         }
 
         // Send initial value.
@@ -161,7 +161,7 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
         }
     }
 
-    private func sourceValueChanged() {
+    private func sourceValueChanged(_ event: KeyPathValueChangeEvent? = nil) {
         guard
             let source = source,
             var destination = destination,
@@ -171,27 +171,32 @@ public class KeyPathBinding<FromType, FromValueType, ToType, ToValueType> where 
             return
         }
 
+        var oldValue: Any? = nil
+        if let event = event {
+            oldValue = event.oldValue
+        }
+
         let value = source[keyPath: sourceKeyPath]
 
-        func assign(value: FromValueType) {
-            let mappedValue = mapper(source, value, destination)
+        func assign(oldValue: Any? = nil, newValue: FromValueType) {
+            let mappedValue = mapper(source, destination, oldValue as? FromValueType, value)
             destination[keyPath: destinationKeyPath] = mappedValue
         }
 
         if let dispatchQueue = dispatchQueue {
             if dispatchQueue == DispatchQueue.main {
-                dispatchQueue.async { assign(value: value) }
+                dispatchQueue.async { assign(oldValue: oldValue, newValue: value) }
             }
             else {
-                dispatchQueue.sync { assign(value: value) }
+                dispatchQueue.sync { assign(oldValue: oldValue, newValue: value) }
             }
         }
         else {
             if DispatchQueue.isMain {
-                assign(value: value)
+                assign(oldValue: oldValue, newValue: value)
             }
             else {
-                DispatchQueue.main.sync { assign(value: value) }
+                DispatchQueue.main.sync { assign(oldValue: oldValue, newValue: value) }
             }
         }
     }

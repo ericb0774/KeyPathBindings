@@ -31,6 +31,14 @@ public struct KeyPathValueChangeEvent {
     let object: AnyObject
     /// The keyPath to the object's property.
     let keyPath: AnyKeyPath
+
+    let oldValue: Any?
+
+    public init(object: AnyObject, keyPath: AnyKeyPath, oldValue: Any? = nil) {
+        self.object = object
+        self.keyPath = keyPath
+        self.oldValue = oldValue
+    }
 }
 
 private enum UserInfoKey: String {
@@ -97,6 +105,11 @@ public class KeyPathBindingNotificationCenter: NotificationCenter {
     ///   - keyPath: The object property's keyPath.
     public func notify<T, U>(object: AnyObject, keyPathValueChanged keyPath: WritableKeyPath<T, U>) {
         let changeEvent = KeyPathValueChangeEvent(object: object, keyPath: keyPath)
+        super.post(name: .keyPathValueChanged, object: object, userInfo: [UserInfoKey.keyPathValueChangeEvent: changeEvent])
+    }
+
+    public func notify<T, U>(object: AnyObject, keyPathValueChanged keyPath: WritableKeyPath<T, U>, oldValue: U) {
+        let changeEvent = KeyPathValueChangeEvent(object: object, keyPath: keyPath, oldValue: oldValue)
         super.post(name: .keyPathValueChanged, object: object, userInfo: [UserInfoKey.keyPathValueChangeEvent: changeEvent])
     }
 }

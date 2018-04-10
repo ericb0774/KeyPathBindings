@@ -84,6 +84,57 @@ final class KeyPathBindingTests: XCTestCase {
         }
     }
 
+    func test_CallsMapperWithCorrectParameters() {
+        let object1 = TestObject()
+        let object2 = TestObject()
+
+        object1.stringValue1 = "foo"
+        object2.stringValue1 = "unset"
+
+        var callCount = 0
+
+        let exp = expectation(description: "3 binding calls are made")
+
+        do {
+            bindings = [
+                try (object1, \TestObject.stringValue1) ||> (object2, \TestObject.stringValue1, { (source, destination, oldValue, newValue) in
+                    XCTAssert(source === object1, "Expected source to be object1 instance.")
+                    XCTAssert(destination === object2, "Expected destination to be object2 instance.")
+
+                    callCount += 1
+                    
+                    switch callCount {
+                    case 1:
+                        XCTAssertNil(oldValue, "Upon initial binding, expected `oldValue` to be nil, but got `\(String(describing: oldValue))`.")
+                        XCTAssertEqual(newValue, "foo", "Upon initial binding, expected `newValue` to be `foo`, but got `\(newValue)`.")
+
+                    case 2:
+                        XCTAssertEqual(oldValue, "foo", "Upon first binding change, expected `oldValue` to be `foo`, but got `\(String(describing: oldValue))`.")
+                        XCTAssertEqual(newValue, "bar", "Upon first binding change, expected `newValue` to be `bar`, but got `\(newValue)`.")
+
+                    case 3:
+                        XCTAssertEqual(oldValue, "bar", "Upon first binding change, expected `oldValue` to be `bar`, but got `\(String(describing: oldValue))`.")
+                        XCTAssertEqual(newValue, "baz", "Upon first binding change, expected `newValue` to be `baz`, but got `\(newValue)`.")
+                        exp.fulfill()
+
+                    default:
+                        XCTFail("Mapper called too many times - \(callCount)")
+                    }
+
+                    return newValue
+                })
+            ]
+        }
+        catch {
+            XCTFail(error.localizedDescription)
+        }
+
+        object1.stringValue1 = "bar"
+        object1.stringValue1 = "baz"
+
+        waitForExpectations(timeout: TimeInterval(1))
+    }
+
     func test_PerformsBindOnMainQueueByDefault() {
         let mainQueueKey = DispatchSpecificKey<()>()
         DispatchQueue.main.setSpecific(key: mainQueueKey, value: ())
@@ -96,7 +147,7 @@ final class KeyPathBindingTests: XCTestCase {
             bindings = [
                 try KeyPathBinding(from: object1, keyPath: \TestObject.stringValue1,
                                    to: object2, keyPath: \TestObject.stringValue2,
-                                   map: { (source, _, _) in
+                                   map: { (source, _, _, _) in
                                     onMainQueue = DispatchQueue.getSpecific(key: mainQueueKey) != nil
                                     return source.stringValue1
                 })
@@ -125,7 +176,7 @@ final class KeyPathBindingTests: XCTestCase {
                 try KeyPathBinding(from: object1, keyPath: \TestObject.stringValue1,
                                    to: object2, keyPath: \TestObject.stringValue2,
                                    dispatchQueue: queue,
-                                   map: { (source, _, _) in
+                                   map: { (source, _, _, _) in
 
                                     onQueue = DispatchQueue.getSpecific(key: queueKey) != nil
                                     return source.stringValue1
@@ -149,7 +200,7 @@ final class KeyPathBindingTests: XCTestCase {
             bindings = [
                 try KeyPathBinding(from: object1, keyPath: \TestObject.intValue1,
                                    to: object2, keyPath: \TestObject.stringValue1,
-                                   map: { (_, value, _) in
+                                   map: { (_, _, _, value) in
                                     return "Mapped value: \(value)"
                 })
             ]
